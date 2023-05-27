@@ -1,0 +1,7 @@
+.form {
+  @apply rounded-lg px-5 py-7 border w-6/12 mx-auto;
+
+  &__footer {
+    @apply flex flex-row-reverse mt-6;
+  }
+}

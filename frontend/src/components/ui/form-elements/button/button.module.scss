@@ -1,0 +1,7 @@
+.button {
+	@apply bg-blue-500 rounded py-3 px-4 text-white;
+
+  &_full {
+    @apply w-full;
+  }
+}

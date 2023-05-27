@@ -1,0 +1,70 @@
+import { ChangeEvent, FC, FocusEvent, useState } from 'react'
+import { MaterialIcon } from '@ui/icon/MaterialIcon';
+import cn from 'clsx';
+
+import styles from './counter.module.scss'
+
+interface ICounterProps {
+  current: number;
+  max?: number;
+  min?: number;
+  onChange: (n: number) => void;
+}
+
+const Counter: FC<ICounterProps> = ({
+  current,
+  max = 30,
+  min = 1,
+  onChange
+}) => {
+  const [value, setValue] = useState(`${current}`);
+  const isLast = current >= max;
+  const isFirst = current <= min; 
+
+  const applyCurrent = (num: number) => {
+    const validNum = Math.max(min, Math.min(max, num));
+    onChange(validNum);
+    setValue(`${validNum}`);
+  }
+
+  const onBlur = (e: FocusEvent<HTMLInputElement>) => {
+    const num = +e.target.value.replace(/\D/g, '');
+    applyCurrent(num);
+  }
+
+  const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
+
+  let increment = () => applyCurrent(current + 1);
+  let decrement = () => applyCurrent(current - 1);
+
+  return (
+    <div className={styles.counter}>
+      <button
+        type="button"
+        disabled={isFirst}
+        onClick={decrement}
+        className={cn(styles.counter__btn, styles.left)}
+      >
+        <MaterialIcon name="MdRemove" />
+      </button>
+      <input
+        className={styles.counter__input}
+        type="text"
+        value={value}
+        onChange={onChangeValue}
+        onBlur={onBlur}
+      />
+      <button
+        type="button"
+        disabled={isLast}
+        onClick={increment}
+        className={cn(styles.counter__btn, styles.right)}
+      >
+        <MaterialIcon name="MdOutlineAdd" />
+      </button>
+    </div>
+  )
+}
+
+
+export default Counter

@@ -1,0 +1,7 @@
+.copy {
+  @apply p-1 w-8 h-8 border rounded-lg border-gray-200 text-xl cursor-pointer;
+
+  > svg {
+    @apply w-full h-full text-gray-500;
+  }
+}

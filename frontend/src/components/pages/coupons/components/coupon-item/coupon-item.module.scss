@@ -1,0 +1,19 @@
+.coupon {
+  @apply p-3 border rounded-md text-gray-700;
+  
+  &__percent {
+    @apply text-xl font-bold;
+  } 
+  
+  &__min__amount {
+    @apply text-sm font-normal break-all;
+  }
+
+  &__code {
+    @apply text-sm font-normal break-all;
+  }
+
+  &__info {
+    @apply text-xs text-neutral-500 mt-2;
+  }
+}

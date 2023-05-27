@@ -1,0 +1,27 @@
+.counter {
+  @apply flex items-center h-[30px] bg-white;
+
+  &__input {
+    @apply w-8 h-7 outline-none rounded-none text-sm border-y border-neutral-200 text-black text-center;
+  }
+
+  &__btn {
+    @apply w-6 h-7 border-neutral-200 border flex items-center justify-center;
+
+    > svg {
+      @apply w-3.5 h-3.5;
+    }
+
+    &.left {
+      @apply rounded-l-full;
+    }
+
+    &.right {
+      @apply rounded-r-full;
+    }
+    
+    &:disabled {
+      @apply opacity-30;
+    }
+  }
+}

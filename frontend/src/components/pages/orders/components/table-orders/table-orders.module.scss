@@ -1,0 +1,43 @@
+.table {
+  @apply table-auto w-full mt-8;
+
+  &__head {
+    @apply text-xs font-semibold uppercase text-gray-400 bg-gray-50;
+  }
+
+  &__header {
+    @apply p-2 whitespace-nowrap font-semibold text-left;
+  }
+
+  &__body {
+    @apply text-sm divide-y divide-gray-100;
+  }
+
+  &__ceil {
+    @apply p-2 whitespace-nowrap text-left;
+
+    .status {
+      @apply p-2 text-white;
+
+      &.created {
+        @apply bg-indigo-500;
+      }
+
+      &.pending {
+        @apply bg-blue-500;
+      }
+
+      &.delivering {
+        @apply bg-orange-500;
+      }
+
+      &.delivered {
+        @apply bg-green-500;
+      }
+
+      &.failed {
+        @apply bg-red-500;
+      }
+    }
+  }
+}

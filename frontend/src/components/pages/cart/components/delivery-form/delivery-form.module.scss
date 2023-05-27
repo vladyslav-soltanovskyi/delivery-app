@@ -1,0 +1,11 @@
+.form {
+  @apply rounded-lg px-5 py-7 border;
+
+  &__title {
+    @apply text-lg text-center;
+  }
+
+  &__fields {
+    @apply mt-5;
+  }
+}

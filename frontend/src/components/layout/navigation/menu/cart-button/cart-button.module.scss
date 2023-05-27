@@ -1,0 +1,11 @@
+.cart__button {
+  @apply ml-12 relative;
+
+  > svg {
+    @apply w-6 h-6;
+  }
+
+  &__items {
+    @apply absolute -top-1 -right-1 w-4 h-4 bg-gray-900 rounded-full text-white text-xs font-bold flex items-center justify-center;
+  }
+}

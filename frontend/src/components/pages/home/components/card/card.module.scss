@@ -1,0 +1,39 @@
+.card {
+  @apply bg-neutral-50 rounded-xl border-neutral-100 border;
+
+  &__media {
+    @apply rounded-t-xl overflow-hidden max-h-52;
+  }
+
+  &__content {
+    @apply p-3;
+
+    &-title {
+      @apply text-gray-800 text-sm font-medium;
+
+      &::first-letter {
+        @apply uppercase;
+      }
+    }
+
+    &-description {
+      @apply text-gray-600 text-xs leading-5 mt-1 line-clamp-2;
+    }
+
+    &-footer {
+      @apply mt-2.5 flex justify-between items-center;
+
+      &-price {
+        @apply font-black text-base text-gray-800;
+      }
+
+      &-btn {
+        @apply text-white;
+      }
+    }
+  }
+
+  &__container {
+    @apply grid grid-cols-1 gap-4 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 xs:grid-cols-2;
+  }
+}

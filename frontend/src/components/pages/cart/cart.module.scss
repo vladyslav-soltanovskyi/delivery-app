@@ -1,0 +1,11 @@
+.cart {
+  @apply w-full;
+  
+  .content {
+    @apply flex items-start mt-5;
+
+    > div {
+      @apply flex-1 ml-5;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.shop {
+  background-color: rgb(246, 240, 234);
+  @apply flex items-center justify-between p-3 rounded-lg cursor-pointer;
+
+  &.active {
+    background-color: rgb(246, 223, 204);
+  }
+
+  &__name {
+    @apply flex-1;
+  }
+
+  &__icon {
+    @apply h-6 w-6;
+  }
+}

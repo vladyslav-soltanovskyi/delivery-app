@@ -2,7 +2,11 @@
   @apply bg-neutral-50 rounded-xl border-neutral-100 border;
 
   &__media {
-    @apply rounded-t-xl overflow-hidden max-h-52;
+    @apply rounded-t-xl overflow-hidden max-h-52 min-h-[11rem];
+
+    &__skeleton {
+      @apply rounded-t-xl overflow-hidden h-44 w-full;
+    }
   }
 
   &__content {
@@ -20,6 +24,14 @@
       @apply text-gray-600 text-xs leading-5 mt-1 line-clamp-2;
     }
 
+    &-company {
+      @apply text-xs text-gray-800 mt-2 line-clamp-1;
+
+      > span {
+        @apply text-xs text-gray-800 underline font-bold cursor-pointer;
+      }
+    }
+
     &-footer {
       @apply mt-2.5 flex justify-between items-center;
 
@@ -29,6 +41,10 @@
 
       &-btn {
         @apply text-white;
+
+        &:disabled {
+          @apply opacity-30;
+        }
       }
     }
   }

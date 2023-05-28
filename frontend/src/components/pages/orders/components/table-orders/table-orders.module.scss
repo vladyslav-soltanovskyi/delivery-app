@@ -17,9 +17,9 @@
     @apply p-2 whitespace-nowrap text-left;
 
     .status {
-      @apply p-2 text-white;
+      @apply p-2 text-white uppercase;
 
-      &.created {
+      &.paid {
         @apply bg-indigo-500;
       }
 
@@ -35,7 +35,7 @@
         @apply bg-green-500;
       }
 
-      &.failed {
+      &.cancelled {
         @apply bg-red-500;
       }
     }

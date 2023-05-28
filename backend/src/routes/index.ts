@@ -10,5 +10,5 @@ export const initRoutes = (controllers: Controllers): Router[] => [
 	initCouponsRoutes(controllers, ApiRoutes.COUPONS),
 	initOrdersRoutes(controllers, ApiRoutes.ORDERS),
 	initProductsRoutes(controllers, ApiRoutes.PRODUCTS),
-	initShopsRoutes(controllers, ApiRoutes.SHOPS)
+	initShopsRoutes(controllers, ApiRoutes.SHOPS),
 ];

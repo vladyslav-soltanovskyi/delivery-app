@@ -1,10 +1,10 @@
-import { AppRoute } from '@enums/api'
+import { AppRoute } from '@enums/route'
 import { FC } from 'react'
 import MenuItem from './menu-item'
 
 import styles from './menu.module.scss'
 import CartButton from './cart-button/cart-button'
-// MdOutlineConfirmationNumber
+
 const Menu: FC = () => {
 	return (
 		<div className={styles.menu}>

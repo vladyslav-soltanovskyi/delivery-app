@@ -7,7 +7,7 @@
   }
 
   &__name {
-    @apply flex-1;
+    @apply flex-1 line-clamp-1;
   }
 
   &__icon {

@@ -10,7 +10,11 @@
   }
 
   &__code {
-    @apply text-sm font-normal break-all;
+    @apply text-sm font-normal break-all uppercase;
+
+    > span {
+      @apply font-bold;
+    }
   }
 
   &__info {

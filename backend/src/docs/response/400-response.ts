@@ -8,7 +8,5 @@
  *         example: 404
  *       error:
  *         type: string
- *         example: "User not found!"
+ *         example: "Entity not found!"
  */
-
-export {};

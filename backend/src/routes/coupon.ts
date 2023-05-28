@@ -6,15 +6,64 @@ import { Router } from 'express';
 export const initCouponsRoutes = ({ couponController }: Controllers, path: ApiRoutes): Router => {
 	const router = Router();
 
+	/**
+	 * @openapi
+	 * /coupons:
+	 *   get:
+	 *     tags: [Coupons]
+	 *     produces:
+	 *       - application/json
+	 *     responses:
+	 *       200:
+	 *         description: Ok
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               type: object
+	 *               properties:
+	 *                  items:
+	 *                      type: array
+	 *                      items:
+	 *                         $ref: "#/definitions/CouponResponse"
+	 *       4**:
+	 *         description: Something went wrong
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               $ref: "#/definitions/Response400"
+	 */
+
 	router.get(apiPath(path, CouponsApiRoutes.COUPONS), wrap(couponController.getAll));
 
+	/**
+	 * @openapi
+	 * /coupons/code/:code:
+	 *   get:
+	 *     tags: [Coupons]
+	 *     produces:
+	 *       - application/json
+	 *     parameters:
+	 *       - in: path
+	 *         name: code
+	 *         required: true
+	 *         type: string
+	 *     responses:
+	 *       200:
+	 *         description: Ok
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               type: object
+	 *               $ref: "#/definitions/CouponResponse"
+	 *       4**:
+	 *         description: Something went wrong
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               $ref: "#/definitions/Response400"
+	 */
+
 	router.get(apiPath(path, CouponsApiRoutes.CODE), wrap(couponController.getByCode));
-
-	router.post(apiPath(path, CouponsApiRoutes.CREATE), wrap(couponController.create));
-
-	router.put(apiPath(path, CouponsApiRoutes.EDIT_ID), wrap(couponController.update));
-
-	router.delete(apiPath(path, CouponsApiRoutes.DELETE_ID), wrap(couponController.delete));
 
 	return router;
 };

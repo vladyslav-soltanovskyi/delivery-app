@@ -24,12 +24,28 @@ export default defineConfig({
         replacement: fileURLToPath(new URL('./src/common/enums', import.meta.url))
       },
       {
-        find: '@types',
+        find: '@types-app',
         replacement: fileURLToPath(new URL('./src/common/types', import.meta.url))
       },
       {
         find: '@hooks',
         replacement: fileURLToPath(new URL('./src/hooks', import.meta.url))
+      },
+      {
+        find: '@store',
+        replacement: fileURLToPath(new URL('./src/store', import.meta.url))
+      },
+      {
+        find: '@services',
+        replacement: fileURLToPath(new URL('./src/services', import.meta.url))
+      },
+      {
+        find: '@validation',
+        replacement: fileURLToPath(new URL('./src/validation', import.meta.url))
+      },
+      {
+        find: '@utils',
+        replacement: fileURLToPath(new URL('./src/utils', import.meta.url))
       },
     ]
   }

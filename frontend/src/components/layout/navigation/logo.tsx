@@ -1,4 +1,4 @@
-import { AppRoute } from '@enums/api'
+import { AppRoute } from '@enums/route'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 

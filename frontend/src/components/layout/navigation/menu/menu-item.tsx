@@ -1,7 +1,7 @@
 import { MaterialIcon } from '@ui/icon/MaterialIcon'
 import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import type { TypeMaterialIconName } from '@types/icon'
+import type { TypeMaterialIconName } from '@types-app/icon'
 
 import styles from './menu.module.scss'
 

@@ -4,4 +4,8 @@
   &_full {
     @apply w-full;
   }
+
+  &:disabled {
+    @apply opacity-30 cursor-not-allowed;
+  }
 }

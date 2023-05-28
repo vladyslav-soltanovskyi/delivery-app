@@ -12,6 +12,8 @@ model Shop {
   name      String
   imageUrl  String
   address   String
+  lat       Float
+  lon       Float
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   coupons   Coupon[]
@@ -27,7 +29,6 @@ model Product {
   price             Float
   shopId            String            @db.Uuid
   shop              Shop              @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  coupon            Coupon[]
   orderedProducts   Ordered_Product[] 
   createdAt         DateTime          @default(now())
   updatedAt         DateTime          @updatedAt
@@ -43,7 +44,7 @@ model Order {
   shopId    String            @db.Uuid
   shop      Shop              @relation(fields: [shopId], references: [id], onDelete: NoAction)
   products  Ordered_Product[]
-  status    OrderStatus       @default(CREATED)
+  status    OrderStatus       @default(PAID)
   createdAt DateTime          @default(now())
   updatedAt DateTime          @updatedAt
 }
@@ -51,7 +52,7 @@ model Order {
 model Ordered_Product {
   id         String    @id @default(uuid()) @db.Uuid
   productId  String    @db.Uuid
-  quantity   Int
+  qty        Int
   product    Product   @relation(fields: [productId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   orderId    String    @db.Uuid
   order      Order     @relation(fields: [orderId], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -67,7 +68,6 @@ model Coupon {
   type      CouponTypes @default(ALL)
   shopId    String?     @unique @db.Uuid
   shop      Shop?       @relation(fields: [shopId], references: [id], onDelete: Cascade)
-  product   Product[]
   dateStart DateTime
   dateEnd   DateTime
   createdAt DateTime    @default(now())
@@ -77,13 +77,12 @@ model Coupon {
 enum CouponTypes {
   ALL
   SHOP
-  PRODUCT
 }
 
 enum OrderStatus {
-  CREATED
+  PAID
   PENDING
   DELIVERING
   DELIVERED
-  FAILED
+  CANCELLED
 }

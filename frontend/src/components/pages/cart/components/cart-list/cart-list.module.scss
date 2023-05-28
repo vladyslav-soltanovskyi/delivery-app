@@ -41,7 +41,7 @@
     @apply mt-8;
 
     &__row {
-      @apply flex justify-between items-center;
+      @apply flex justify-between items-center my-2;
     }
   }
   
@@ -55,5 +55,9 @@
     &__content {
       @apply mt-5;
     }
+  }
+
+  &__used__coupon {
+    @apply line-through text-gray-500 text-xs mr-2;
   }
 }

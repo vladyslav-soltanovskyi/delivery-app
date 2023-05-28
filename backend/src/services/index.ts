@@ -9,7 +9,7 @@ export const initServices = (prismaClient: PrismaClient) => {
 	const productService = new ProductService(prismaClient);
 	const couponService = new CouponService(prismaClient);
 	const shopService = new ShopService(prismaClient);
-	
+
 	return {
 		orderService,
 		productService,

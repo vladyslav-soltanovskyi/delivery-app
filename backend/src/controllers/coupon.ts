@@ -1,35 +1,27 @@
-import { Coupon } from '@prisma/client';
+import { HttpError } from '@errors/http-error';
 import { CouponService } from '@services/index';
-import { TypedRequest, TypedRequestBody, TypedRequestQuery } from '@types-app/index';
-
-type CreateCoupon = Omit<Coupon, 'id' | 'createdAt' | 'updatedAt'>;
+import { TypedRequestParams } from '@types-app/index';
 
 class CouponController {
 	private _couponService: CouponService;
-	
+
 	constructor(couponService: CouponService) {
 		this._couponService = couponService;
 	}
 
-	public async getAll() {
+	public getAll = async () => {
 		return await this._couponService.getAll();
-	}
+	};
 
-	public async getByCode(req: TypedRequestBody<{ code: string }>) {
-		return await this._couponService.getByCode(req.body.code);
-	}
+	public getByCode = async (req: TypedRequestParams<{ code: string }>) => {
+		const coupon = await this._couponService.getByCode(req.params.code);
 
-	public async create(req: TypedRequestBody<CreateCoupon>) {
-		return await this._couponService.create(req.body);
-	}
+		if (!coupon) {
+			throw new HttpError('Coupon not Found', 404);
+		}
 
-	public async update(req: TypedRequest<{ id: string }, Partial<Coupon>>) {
-		return await this._couponService.update(req.query.id, req.body);
-	}
-
-	public async delete(req: TypedRequestQuery<{ id: string }>) {
-		return await this._couponService.delete(req.query.id);
-	}
+		return coupon;
+	};
 }
 
 export { CouponController };

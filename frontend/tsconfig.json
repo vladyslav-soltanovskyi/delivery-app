@@ -28,8 +28,12 @@
       "@ui/*": ["src/components/ui/*"],
 			"@pages/*": ["src/components/pages/*"],
 			"@enums/*": ["src/common/enums/*"],
-			"@types/*": ["src/common/types/*"],
+			"@types-app/*": ["src/common/types/*"],
 			"@hooks/*": ["src/hooks/*"],
+			"@store/*": ["src/store/*"],
+			"@services/*": ["src/services/*"],
+			"@validation/*": ["src/validation/*"],
+			"@utils/*": ["src/utils/*"],
 			"@/*": ["src/*"],
     }
   },

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FocusEvent, useState } from 'react'
+import { ChangeEvent, FC, FocusEvent, KeyboardEvent, useState } from 'react'
 import { MaterialIcon } from '@ui/icon/MaterialIcon';
 import cn from 'clsx';
 
@@ -34,8 +34,21 @@ const Counter: FC<ICounterProps> = ({
 
   const onChangeValue = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value);
 
-  let increment = () => applyCurrent(current + 1);
-  let decrement = () => applyCurrent(current - 1);
+  const onKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    switch (e.key) {
+      case "ArrowUp": {
+        applyCurrent(current + 1);
+        break;
+      }
+      case "ArrowDown": {
+        applyCurrent(current - 1);
+        break;
+      }
+    }
+  }
+
+  const increment = () => applyCurrent(current + 1);
+  const decrement = () => applyCurrent(current - 1);
 
   return (
     <div className={styles.counter}>
@@ -53,6 +66,7 @@ const Counter: FC<ICounterProps> = ({
         value={value}
         onChange={onChangeValue}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
       />
       <button
         type="button"

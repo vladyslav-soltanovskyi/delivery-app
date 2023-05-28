@@ -9,7 +9,7 @@ export const wrap =
 		res: Response,
 		next: NextFunction,
 		// eslint-disable-next-line
-	): Promise<void | Response<any, Record<string, any>>> =>
+  ): Promise<void | Response<any, Record<string, any>>> =>
 		handler(req)
 			.then((result) => {
 				if (!result) {

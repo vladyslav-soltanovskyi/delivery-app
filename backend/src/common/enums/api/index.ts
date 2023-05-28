@@ -7,7 +7,7 @@ export enum ApiRoutes {
 
 export enum CouponsApiRoutes {
 	COUPONS = '/',
-	CODE = '/code',
+	CODE = '/code/:code',
 	CREATE = '/',
 	EDIT_ID = '/:id',
 	DELETE_ID = '/:id',
@@ -22,6 +22,7 @@ export enum ShopsApiRoutes {
 
 export enum ProductsApiRoutes {
 	PRODUCTS = '/',
+	PRODUCT = '/:id',
 	CREATE = '/',
 	EDIT_ID = '/:id',
 	DELETE_ID = '/:id',

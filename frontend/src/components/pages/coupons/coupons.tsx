@@ -1,20 +1,34 @@
-import { FC } from 'react'
+import { FC } from "react";
+import CouponItem from "./components/coupon-item/coupon-item";
 
-import styles from './coupons.module.scss'
-import CouponItem from './components/coupon-item/coupon-item';
+import styles from "./coupons.module.scss";
+import { useCoupons } from "./hooks/useCoupons";
+import Spinner from "@ui/spinner/spinner";
+import Meta from "@ui/meta/meta";
 
-interface ICouponsProps {
+const Coupons: FC = () => {
+  const { coupons, isLoading } = useCoupons();
 
-}
+  if (isLoading) {
+    return <Spinner />;
+  }
 
-const Coupons: FC<ICouponsProps> = () => {
+  if (!coupons?.length) {
+    return <p>Coupons Not Found</p>;
+  }
+
   return (
-    <div className={styles.coupons}>
-      {[1,2,3,4,5].map((_, i) => (
-        <CouponItem key={i} />
-      ))}
-    </div>
-  )
-}
+    <Meta
+      title="Coupons"
+      description="On this page you can select any coupon for your order"
+    >
+      <div className={styles.coupons}>
+        {coupons.map((coupon) => (
+          <CouponItem key={coupon.id} {...coupon} />
+        ))}
+      </div>
+    </Meta>
+  );
+};
 
 export default Coupons;

@@ -4,3 +4,4 @@ export {
 	TypedRequestParams,
 	TypedRequest,
 } from './controllers';
+export { CreateProductDto } from './products';

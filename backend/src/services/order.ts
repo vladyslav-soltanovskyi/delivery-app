@@ -1,6 +1,5 @@
 import { Order, PrismaClient } from '@prisma/client';
-
-type CreateOrder = Omit<Order, 'id' | 'createdAt' | 'updatedAt'>;
+import { CreateOrderDto } from '@types-app/orders';
 
 class OrderService {
 	private _dbClient: PrismaClient;
@@ -9,21 +8,41 @@ class OrderService {
 		this._dbClient = dbClient;
 	}
 
-	public getAll() {
-		return this._dbClient.order.findMany();
-	}
-
 	public getByPhoneAndEmail(phone: string, email: string) {
 		return this._dbClient.order.findMany({
 			where: {
 				phone,
 				email,
 			},
+			select: {
+				id: true,
+				address: true,
+				email: true,
+				phone: true,
+				name: true,
+				spent: true,
+				shopId: true,
+				status: true,
+				createdAt: true,
+				updatedAt: true,
+				shop: {
+					select: {
+						name: true,
+					},
+				},
+				products: {
+					select: {
+						id: true,
+						qty: true,
+						product: true,
+					},
+				},
+			},
 		});
 	}
 
-	public create(data: CreateOrder) {
-		return this._dbClient.order.create({
+	public async create(data: CreateOrderDto) {
+		const order = await this._dbClient.order.create({
 			data: {
 				address: data.address,
 				email: data.email,
@@ -31,33 +50,15 @@ class OrderService {
 				name: data.name,
 				spent: data.spent,
 				shopId: data.shopId,
-				status: data.status,
 			},
 		});
-	}
 
-	public update(id: string, data: Partial<Order>) {
-		return this._dbClient.order.update({
-			where: {
-				id,
-			},
-			data: {
-				address: data.address,
-				email: data.email,
-				phone: data.phone,
-				name: data.name,
-				spent: data.spent,
-				shopId: data.shopId,
-				status: data.status,
-			},
-		});
-	}
-
-	public delete(id: string) {
-		return this._dbClient.order.delete({
-			where: {
-				id,
-			},
+		return this._dbClient.ordered_Product.createMany({
+			data: data.products.map((p) => ({
+				productId: p.productId,
+				qty: p.qty,
+				orderId: order.id,
+			})),
 		});
 	}
 }

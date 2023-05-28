@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AppRoute } from '@enums/api';
+import { AppRoute } from '@enums/route';
 import Home from '@pages/home/home';
 import Cart from '@pages/cart/cart';
 import Orders from '@pages/orders/orders';
@@ -9,8 +9,6 @@ import Coupons from '@pages/coupons/coupons';
 import Layout from '@/components/layout/layout';
 
 const Routing: FC = () => {
-  // const { data: authData, isLoading, error } = useGetUserQuery();
-
   return (
     <BrowserRouter>
       <Routes>

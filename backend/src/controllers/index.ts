@@ -9,7 +9,7 @@ export const initControllers = (services: Services) => {
 	const couponController = new CouponController(services.couponService);
 	const shopController = new ShopController(services.shopService);
 	const orderController = new OrderController(services.orderService);
-	
+
 	return {
 		productController,
 		couponController,

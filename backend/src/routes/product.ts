@@ -6,13 +6,41 @@ import { Router } from 'express';
 export const initProductsRoutes = ({ productController }: Controllers, path: ApiRoutes): Router => {
 	const router = Router();
 
+	/**
+	 * @openapi
+	 * /products:
+	 *   get:
+	 *     tags: [Products]
+	 *     produces:
+	 *       - application/json
+	 *     parameters:
+	 *       - in: query
+	 *         name: shopId
+	 *         required: false
+	 *         type: string
+	 *     responses:
+	 *       200:
+	 *         description: Ok
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               type: object
+	 *               properties:
+	 *                 products:
+	 *                   type: array
+	 *                   items:
+	 *                     "$ref": "#/definitions/ProductResponse"
+	 *                 count:
+	 *                   type: integer
+	 *       4**:
+	 *         description: Something went wrong
+	 *         content:
+	 *           application/json:
+	 *             schema:
+	 *               $ref: "#/definitions/Response400"
+	 */
+
 	router.get(apiPath(path, ProductsApiRoutes.PRODUCTS), wrap(productController.getAll));
-
-	router.post(apiPath(path, ProductsApiRoutes.CREATE), wrap(productController.create));
-
-	router.put(apiPath(path, ProductsApiRoutes.EDIT_ID), wrap(productController.update));
-
-	router.delete(apiPath(path, ProductsApiRoutes.DELETE_ID), wrap(productController.delete));
 
 	return router;
 };

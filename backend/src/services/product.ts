@@ -1,6 +1,5 @@
-import { PrismaClient, Product } from '@prisma/client';
-
-type CreateProduct = Omit<Product, 'id' | 'createdAt' | 'updatedAt'>;
+import type { PrismaClient, Product } from '@prisma/client';
+import { CreateProductDto } from '@types-app/products';
 
 class ProductService {
 	private _dbClient: PrismaClient;
@@ -10,56 +9,25 @@ class ProductService {
 	}
 
 	public getAll(shopId?: string) {
-		let optinos = {};
-
-		if (typeof shopId !== 'string') {
-			optinos = { where: { shopId } };
-		}
-
-		return this._dbClient.product.findMany(optinos);
-	}
-
-	public getById(id: string) {
-		return this._dbClient.product.findFirst({
-			where: {
-				id,
-			},
-		});
-	}
-
-	public create(data: CreateProduct) {
-		return this._dbClient.product.create({
-			data: {
-				title: data.title,
-				poster: data.poster,
-				description: data.description,
-				price: data.price,
-				shopId: data.shopId,
-			},
-		});
-	}
-
-	public update(id: string, data: Partial<Product>) {
-		return this._dbClient.product.update({
-			where: {
-				id,
-			},
-			data: {
-				title: data.title,
-				poster: data.poster,
-				description: data.description,
-				price: data.price,
-				shopId: data.shopId,
-			},
-		});
-	}
-
-	public delete(id: string) {
-		return this._dbClient.product.delete({
-			where: {
-				id,
-			},
-		});
+		return Promise.all([
+			this._dbClient.product.findMany({
+				where: { shopId: shopId },
+				select: {
+					id: true,
+					title: true,
+					description: true,
+					poster: true,
+					price: true,
+					shopId: true,
+					shop: {
+						select: {
+							name: true,
+						},
+					},
+				},
+			}),
+			this._dbClient.product.count({ where: { shopId } }),
+		]);
 	}
 }
 

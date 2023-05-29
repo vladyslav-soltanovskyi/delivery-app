@@ -13,8 +13,8 @@ class OrderController {
 		return await this._orderService.getByPhoneAndEmail(req.query.phone, req.query.email);
 	};
 
-	public create = async (req: TypedRequestBody<CreateOrderDto>) => {
-		return await this._orderService.create(req.body);
+	public create = async (req: TypedRequestBody<{ data: CreateOrderDto; }>) => {
+		return await this._orderService.create(req.body.data);
 	};
 }
 

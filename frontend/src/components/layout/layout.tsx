@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 import Navigation from './navigation/navigation'
 
-import styles from './Layout.module.scss'
+import styles from './layout.module.scss'
 
 const Layout: FC = () => {
 	return (

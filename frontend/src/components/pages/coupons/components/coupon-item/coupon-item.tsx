@@ -24,7 +24,7 @@ const CouponItem: FC<ICouponItemProps> = ({
   return (
     <div className={styles.coupon}>
       <div className={styles.coupon__percent}>{value} CHEAPER</div>
-      <div className={styles.coupon__min__amount}>On orders over €88.21</div>
+
       <div className={styles.coupon__code}>Kod: <span>{code}</span></div>
       <div className={styles.coupon__info}>
         <li>{formatDate(dateStart)} ~ {formatDate(dateEnd)}</li>

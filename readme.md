@@ -21,4 +21,4 @@
 
 ### How to start
 
-- `cd backed && npm i && npm run dev`
+- `cd backend && npm i && npm run dev`
